@@ -1,0 +1,446 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html{
+      height: 100%;
+      background: linear-gradient(to top, #87ceeb 0%, #ccefff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+
+      position: relative;
+    }
+
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: visible;
+      background: transparent;
+    }
+
+
+    .sun {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at center, #fff176, #fbc02d);
+      border-radius: 50%;
+      box-shadow:
+        0 0 30px 10px rgba(251, 192, 45, 0.6),
+        0 0 60px 20px rgba(251, 192, 45, 0.3);
+      z-index: 5;
+      animation: sunGlow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes sunGlow {
+      0% {
+        box-shadow:
+          0 0 30px 10px rgba(251, 192, 45, 0.6),
+          0 0 60px 20px rgba(251, 192, 45, 0.3);
+      }
+      100% {
+        box-shadow:
+          0 0 40px 15px rgba(251, 192, 45, 0.8),
+          0 0 80px 30px rgba(251, 192, 45, 0.5);
+      }
+    }
+
+
+    .cloud {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 30px 10px 0 0 #fff, 60px 15px 0 0 #fff, 90px 10px 0 0 #fff;
+      opacity: 0.85;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+      animation: cloudMove 30s linear infinite;
+      z-index: 4;
+    }
+
+    .cloud.small {
+      width: 80px;
+      height: 50px;
+      top: 100px;
+      left: -100px;
+      animation-duration: 40s;
+    }
+
+    .cloud.medium {
+      width: 120px;
+      height: 70px;
+      top: 140px;
+      left: -150px;
+      animation-duration: 35s;
+    }
+
+    .cloud.large {
+      width: 160px;
+      height: 90px;
+      top: 80px;
+      left: -200px;
+      animation-duration: 50s;
+    }
+
+    @keyframes cloudMove {
+      0% {
+        transform: translateX(0);
+        opacity: 0.85;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(150vw);
+        opacity: 0.85;
+      }
+    }
+
+
+    .grass {
+      position: absolute;
+      top: 520px;
+      left: 0;
+      width: 1800px;
+      height: 120px;
+      background: linear-gradient(to top, #2e7d32 0%, #66bb6a 100%);
+      box-shadow: inset 0 10px 15px rgba(0,0,0,0.2);
+      z-index: 3;
+      overflow: visible;
+    }
+
+    .grass-blade {
+      position: absolute;
+      bottom: 0;
+      width: 12px;
+      height: 60px;
+      background: linear-gradient(to top, #1b5e20, #4caf50);
+      border-radius: 6px 6px 0 0;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+      animation: grassSway 3s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+
+   .field {
+  display: flex;
+  gap: 0; 
+  align-items: flex-end;
+  width:  1600px; 
+  justify-content: center;
+  position: relative;
+  overflow: visible; 
+  top: 250px;
+}
+
+
+.flower-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--flower-height, 250px);
+  min-width: 140px;
+  animation: sway var(--anim-duration, 4s) ease-in-out infinite;
+  animation-delay: var(--anim-delay, 0s);
+  transform-origin: center bottom;
+  cursor: default;
+  user-select: none;
+  margin-left: -50px; 
+  z-index: var(--z-index, 1); 
+  transition: z-index 0.3s ease;
+}
+
+
+.flower-container:first-child {
+  margin-left: 0;
+}
+
+.flower-container:hover {
+  z-index: 10;
+}
+
+
+    .flower {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 10px;
+      z-index: 2;
+    }
+
+
+    .petal {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      width: 22px;
+      height: 70px;
+      background: linear-gradient(45deg, #f9d71c 0%, #d4b300 100%);
+      border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+      box-shadow: inset 0 0 10px rgba(255 255 255 / 0.3);
+      transform-origin: bottom center;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 2px #c9b300);
+      transition: background 0.3s ease;
+    }
+
+
+    .petal:nth-child(1)  { transform: translate(-50%, 0) rotate(0deg); }
+    .petal:nth-child(2)  { transform: translate(-50%, 0) rotate(15deg); }
+    .petal:nth-child(3)  { transform: translate(-50%, 0) rotate(30deg); }
+    .petal:nth-child(4)  { transform: translate(-50%, 0) rotate(45deg); }
+    .petal:nth-child(5)  { transform: translate(-50%, 0) rotate(60deg); }
+    .petal:nth-child(6)  { transform: translate(-50%, 0) rotate(75deg); }
+    .petal:nth-child(7)  { transform: translate(-50%, 0) rotate(90deg); }
+    .petal:nth-child(8)  { transform: translate(-50%, 0) rotate(105deg); }
+    .petal:nth-child(9)  { transform: translate(-50%, 0) rotate(120deg); }
+    .petal:nth-child(10) { transform: translate(-50%, 0) rotate(135deg); }
+    .petal:nth-child(11) { transform: translate(-50%, 0) rotate(150deg); }
+    .petal:nth-child(12) { transform: translate(-50%, 0) rotate(165deg); }
+    .petal:nth-child(13) { transform: translate(-50%, 0) rotate(180deg); }
+    .petal:nth-child(14) { transform: translate(-50%, 0) rotate(195deg); }
+    .petal:nth-child(15) { transform: translate(-50%, 0) rotate(210deg); }
+    .petal:nth-child(16) { transform: translate(-50%, 0) rotate(225deg); }
+    .petal:nth-child(17) { transform: translate(-50%, 0) rotate(240deg); }
+    .petal:nth-child(18) { transform: translate(-50%, 0) rotate(255deg); }
+    .petal:nth-child(19) { transform: translate(-50%, 0) rotate(270deg); }
+    .petal:nth-child(20) { transform: translate(-50%, 0) rotate(285deg); }
+    .petal:nth-child(21) { transform: translate(-50%, 0) rotate(300deg); }
+    .petal:nth-child(22) { transform: translate(-50%, 0) rotate(315deg); }
+    .petal:nth-child(23) { transform: translate(-50%, 0) rotate(330deg); }
+    .petal:nth-child(24) { transform: translate(-50%, 0) rotate(345deg); }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at center, #4b2e0e 40%, #2e1a00 90%);
+      border-radius: 50%;
+      box-shadow: inset 0 0 10px #1a0f00;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      transition: background 0.3s ease;
+    }
+
+
+    .stem {
+      position: relative;
+      width: 10px;
+      height: calc(var(--flower-height, 300px) - 50px);
+      background: linear-gradient(to top, #1a5e1a, #3cb371);
+      border-radius: 6px;
+      box-shadow: inset 0 0 5px #0f3d0f;
+      z-index: 1;
+      transform-origin: bottom center;
+      animation: sway-stem var(--anim-duration, 4s) ease-in-out infinite;
+      animation-delay: var(--anim-delay, 0s);
+      transition: background 0.3s ease;
+    }
+
+
+    .leaf {
+      position: absolute;
+      width: 40px;
+      height: 22px;
+      background: linear-gradient(135deg, #2e8b57, #1a5e1a);
+      border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+      box-shadow: inset 0 0 5px #0f3d0f;
+      filter: drop-shadow(0 0 1px #0f3d0f);
+      top: 70%;
+      left: 50%;
+      transform-origin: center;
+      animation: sway-leaf var(--anim-duration, 4s) ease-in-out infinite;
+      animation-delay: var(--anim-delay, 0s);
+      transition: background 0.3s ease;
+    }
+
+    .leaf.left {
+      transform: translateX(-75px) rotate(-30deg);
+    }
+
+    .leaf.right {
+      transform: translateX(35px) rotate(30deg);
+      top: 55%;
+    }
+
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(3deg);
+      }
+      50% {
+        transform: rotate(-3deg);
+      }
+    }
+
+    @keyframes sway-stem {
+      0%, 100% {
+        transform: rotate(2deg);
+      }
+      50% {
+        transform: rotate(-2deg);
+      }
+    }
+
+    @keyframes sway-leaf {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(10deg);
+      }
+    }
+
+    .flower-container:hover .petal {
+      background: linear-gradient(45deg, #fff176 0%, #fbc02d 100%);
+      filter: drop-shadow(0 0 3px #fbc02d);
+    }
+    .flower-container:hover .center {
+      background: radial-gradient(circle at center, #6b3e0e 40%, #3e2600 90%);
+      box-shadow: inset 0 0 15px #3e2600;
+    }
+    .flower-container:hover .stem {
+      background: linear-gradient(to top, #2e8b57, #66bb6a);
+    }
+    .flower-container:hover .leaf {
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      box-shadow: inset 0 0 7px #1b5e20;
+    }
+
+
+
+
+
+.scene > div.text-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 600px;
+  text-align: center;
+  z-index: 15;
+  pointer-events: none; 
+}
+
+
+.scene > div.text-container p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #141202; 
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.7);
+  margin-bottom: 0.6em;
+  user-select: none;
+  line-height: 1.4;
+}
+
+
+.scene > div.text-container p:last-child {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 480px) {
+  .field {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 0 20px;
+    gap: 0;
+    scroll-snap-type: x mandatory;
+  }
+
+  .flower-container {
+    flex: 0 0 auto;
+    margin-left: -40px;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .flower-container:first-child {
+    margin-left: 0;
+  }
+
+  .flower-container:nth-child(odd) {
+    transform: translateY(-10px);
+    z-index: 2;
+  }
+
+  .flower-container:nth-child(even) {
+    transform: translateY(10px);
+    z-index: 3;
+  }
+
+  .flower-container:hover {
+    z-index: 10;
+    transform: scale(1.05) translateY(-5px);
+  }
+
+  .text-container {
+    max-width: 90%;
+    padding: 0 10px;
+  }
+
+  .text-container p {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    word-break: break-word;
+    text-align: center;
+  }
+
+
+  html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+@media screen and (max-width: 480px) {
+  html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;           
+    overflow: hidden;     
+  }
+
+
+  .scene {
+    position: relative;
+    height: 100vh;        
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+  }
+
+
+  .grass {
+    position: absolute;
+    top: auto;            
+    bottom: 0;            
+    left: 0;
+    width: 100%;
+    height: 120px;       
+    background: linear-gradient(to top, #2e7d32 0%, #66bb6a 100%);
+    box-shadow: inset 0 10px 15px rgba(0,0,0,0.2);
+  }
+}
+}
+
+
+  
